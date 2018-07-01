@@ -1,4 +1,7 @@
 .fab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 3.9375rem;
   height: 3.9375rem;
   border-radius: 50%;
@@ -8,4 +11,5 @@
   right: 1.3125rem;
   z-index: 9999;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.224) 1px 1px 4px;
 }
