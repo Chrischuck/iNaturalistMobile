@@ -26,24 +26,30 @@ module.exports = {
           loader: "babel-loader"
         }
       },
+      { test: /\.eot/, loader: 'url-loader?mimetype=application/vnd.ms-fontobject' },
+      { test: /\.ttf/, loader: 'url-loader?mimetype=application/x-font-ttf' },
+      { test: /\.woff/, loader: 'url-loader?mimetype=application/font-woff' },
+      { test: /\.woff2/, loader: 'url-loader?mimetype=application/font-woff2' },
+      { test: /\.svg$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" },
+      { test: /\.ico$/, loader: "url-loader?limit=100000" },
+
       {
-        test: /\.css$/,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
-              sourceMap: true,
-              minimize: true
-            }
-           }
-         ]
-       }
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      },
+       {
+        test: /\.scss$/,
+        use: [
+            "style-loader", 
+            "css-loader", 
+            "sass-loader"
+        ]
+      }
      ]
   },
   devServer: {
