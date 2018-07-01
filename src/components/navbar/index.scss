@@ -1,4 +1,18 @@
 .navbar {
   height: 50px;
-  background-color: red;
+  border-bottom: 1px solid rgb(178, 178, 178);
+}
+
+.navbar-content {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.routes {
+  display: flex;
 }

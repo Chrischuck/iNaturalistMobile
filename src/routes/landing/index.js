@@ -5,7 +5,7 @@ import Loadable from 'react-loadable'
 import Loading from '../../components/loading'
 
 const LoadableComponent = Loadable({
-  loader: () => import('./notFound'),
+  loader: () => import('./landing'),
   loading: Loading,
 })
 
