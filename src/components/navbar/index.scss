@@ -1,6 +1,10 @@
 .navbar {
   height: 50px;
   border-bottom: 1px solid rgb(178, 178, 178);
+  @media screen and (max-width: 1100px) {
+    height: 100px;
+    flex-direction: column-reverse;
+  }
 }
 
 .navbar-content {
@@ -11,6 +15,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  @media screen and (max-width: 1100px) {
+
+    flex-direction: column-reverse;
+  }
 }
 
 .routes {
