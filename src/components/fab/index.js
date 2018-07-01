@@ -23,7 +23,7 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <>
-        <input ref={this.inputRef} onChange={this.handleFileUpload} type="file" accept="image/*;capture=camera" style={{display: 'none'}}/>
+        <input ref={this.inputRef} onChange={this.handleFileUpload} accept="image/*;capture=camera, image/*, audio/x-wav, audio/wav, audio/wave, audio/mp3, audio/x-mp3, audio/mp4, audio/x-m4a" multiple="" type="file" style={{display: 'none'}}/>
         <div className='fab' onClick={this.onClick} >
           
           <img style={{ height: '1.7em' }} src={camera} />
