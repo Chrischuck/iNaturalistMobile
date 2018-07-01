@@ -1,10 +1,7 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: './src/index.html',
-  filename: './index.html'
-});
 module.exports = {
   entry: {
     vendor: ['@babel/polyfill', 'react', 'react-dom'],
@@ -56,7 +53,26 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
-    htmlWebpackPlugin,
+    new HtmlWebpackPlugin({
+      title: 'iNaturalist',
+      template: './src/index.html',
+      filename: './index.html',
+      inject: true,
+      minify: {
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+        minifyCSS: true,
+        minifyURLs: true,
+        minifyJS: true,
+        removeComments: true,
+        removeRedundantAttributes: true
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('dev')
+      }
+    }),
     //new BundleAnalyzerPlugin()
   ]
 };
