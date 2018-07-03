@@ -13,19 +13,23 @@ class AppRouter extends React.Component {
   render() {
 
     return (
-      <>
-        <Navbar />
 
         <Router>
+          <>
+          <Navbar />
+
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/login' component={Landing} />
             <Route exact path='/signup' component={Landing} />
             <Route exact component={NotFound} />
           </Switch>
+
+          <Fab />
+          </>
         </Router>
-        <Fab />
-      </>
+        
+
 
     )
   }
