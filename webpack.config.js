@@ -42,8 +42,8 @@ module.exports = {
        {
         test: /\.scss$/,
         use: [
-            "style-loader", 
-            "css-loader", 
+            "style-loader",
+            "css-loader",
             "sass-loader"
         ]
       }
@@ -70,7 +70,7 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('dev')
+        'NODE_ENV': JSON.stringify('development')
       }
     }),
     //new BundleAnalyzerPlugin()
