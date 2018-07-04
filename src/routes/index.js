@@ -1,5 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { history } from '../store'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 
 import Navbar from '../components/navbar'
 import Fab from '../components/fab'
@@ -13,8 +15,7 @@ class AppRouter extends React.Component {
   render() {
 
     return (
-
-        <Router>
+        <ConnectedRouter history={history}>
           <>
           <Navbar />
 
@@ -27,10 +28,7 @@ class AppRouter extends React.Component {
 
           <Fab />
           </>
-        </Router>
-        
-
-
+        </ConnectedRouter>
     )
   }
 }
