@@ -6,9 +6,11 @@ import rootReducer from './modules';
 
 export const history = createBrowserHistory();
 
-const initialState = {};
-
+const initialState = {
+  
+};
 const enhancers = [];
+
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 

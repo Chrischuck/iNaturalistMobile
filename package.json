@@ -27,7 +27,8 @@
     "webpack": "^4.14.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-dotenv-plugin": "^2.0.2"
   },
   "dependencies": {
     "aphrodite": "^2.2.2",

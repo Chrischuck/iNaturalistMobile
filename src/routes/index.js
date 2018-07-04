@@ -8,6 +8,7 @@ import Fab from '../components/fab'
 
 import Landing from './landing'
 import Login from './login'
+import Explore from './explore'
 import Signup from './signup'
 import NotFound from './notFound'
 
@@ -21,7 +22,8 @@ class AppRouter extends React.Component {
 
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route exact path='/login' component={Landing} />
+            <Route exact path='explore' component={Explore} />
+            <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Landing} />
             <Route exact component={NotFound} />
           </Switch>

@@ -1,6 +1,6 @@
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: {
@@ -53,6 +53,10 @@ module.exports = {
     historyApiFallback: true,
   },
   plugins: [
+    new DotenvPlugin({
+      sample: './.env.example',
+      path: './.env'
+    }),
     new HtmlWebpackPlugin({
       title: 'iNaturalist',
       template: './src/index.html',
@@ -68,11 +72,7 @@ module.exports = {
         removeRedundantAttributes: true
       }
     }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    }),
+
     //new BundleAnalyzerPlugin()
   ]
 };
