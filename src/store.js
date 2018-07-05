@@ -7,8 +7,9 @@ import rootReducer from './modules';
 export const history = createBrowserHistory();
 
 const initialState = {
-  
+
 };
+
 const enhancers = [];
 
 if (process.env.NODE_ENV === 'development') {

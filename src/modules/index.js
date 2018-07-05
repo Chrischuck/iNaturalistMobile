@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 
+
+import session from './session'
+
 export default combineReducers({
-  initialState: (state, action) => ({})
+  session
 });

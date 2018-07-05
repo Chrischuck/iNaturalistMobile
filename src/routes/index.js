@@ -10,6 +10,7 @@ import Landing from './landing'
 import Login from './login'
 import Explore from './explore'
 import Signup from './signup'
+import Redirect from './redirect'
 import NotFound from './notFound'
 
 class AppRouter extends React.Component {
@@ -25,6 +26,7 @@ class AppRouter extends React.Component {
             <Route exact path='explore' component={Explore} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Landing} />
+            <Route exact path='/redirect' component={Redirect} />
             <Route exact component={NotFound} />
           </Switch>
 
