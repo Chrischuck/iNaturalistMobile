@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Landing = () => (<div>
+const Explore = () => (<div>
   explore
    </div>)
 
-export default Landing
+export default Explore

@@ -6,10 +6,9 @@ module.exports = {
   entry: {
     vendor: ['@babel/polyfill', 'react', 'react-dom'],
     client:     './src/index.js',
-
   },
   output: {
-    path: __dirname + '../dist',
+    path: __dirname + '/dist',
     filename: '[name].chunkhash.bundle.js',
     chunkFilename: '[name].chunkhash.bundle.js',
     publicPath: '/',

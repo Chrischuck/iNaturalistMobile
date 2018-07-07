@@ -23,7 +23,7 @@ class AppRouter extends React.Component {
 
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route exact path='explore' component={Explore} />
+            <Route exact path='/explore' component={Explore} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Landing} />
             <Route exact path='/redirect' component={Redirect} />
