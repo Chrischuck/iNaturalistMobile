@@ -21,3 +21,8 @@ export default function reducer(state = initialState, action = {}) {
 export const setAccessToken = ({ accessToken }) => {
   return { type: SET_ACCESS_TOKEN, payload: { accessToken }  };
 }
+
+
+export const getAccessToken = ({ accessToken }) => {
+  return { type: SET_ACCESS_TOKEN, payload: { accessToken }  };
+}

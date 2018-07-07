@@ -20,7 +20,6 @@ class AppRouter extends React.Component {
         <ConnectedRouter history={history}>
           <>
           <Navbar />
-
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/explore' component={Explore} />
