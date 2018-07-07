@@ -5,8 +5,6 @@ import './index.scss'
 
 import camera from '../../assets/camera.svg'
 
-
-
 const mapStateToProps = state => ({ router: state.router })
 
 @connect(mapStateToProps, {})
@@ -48,7 +46,6 @@ export default class Navbar extends React.Component {
               style={{display: 'none'}}
             />
             <div className='fab' onClick={this.onClick} >
-              
               <img style={{ height: '1.7em' }} src={camera} />
             </div>
           </>
