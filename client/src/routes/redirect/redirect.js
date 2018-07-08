@@ -7,11 +7,20 @@ const mapStateToProps = state => ({ router: state.router })
 
 @connect(mapStateToProps, { getAccessToken })
 class Redirect extends React.Component {
-  constructor(props) {
-    super(props)
 
-
+  componentDidMount() {
+    const { getAccessToken } = this.props
+    const queryParams = window.location.search.substr(1)
+    const paramMap = {}
+    queryParams.split('&').forEach(el => {
+      const pieces = el.split('=')
+      paramMap[ pieces[0] ] = pieces[1]
+    })
+    
+    getAccessToken({ code: paramMap.code })
   }
+
+
   render() {
     console.log(this.props)
     return (

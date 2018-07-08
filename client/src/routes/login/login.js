@@ -2,6 +2,10 @@ import React from 'react'
 
 import './index.scss'
 
+
+const { INATURALIST_URI, OAUTH_CLIENT_ID, OAUTH_REDIRECT_URI, OAUTH_RESPONSE_TYPE } = process.env
+const REDIRECT_URI = `${INATURALIST_URI}/oauth/authorize?client_id=${OAUTH_CLIENT_ID}&redirect_uri=${OAUTH_REDIRECT_URI}&response_type=${OAUTH_RESPONSE_TYPE}`
+
 class Login extends React.Component {
  
   render() {
@@ -12,7 +16,7 @@ class Login extends React.Component {
           <h3> Log into iNaturalist Mobile</h3>
           <a 
             className='oauth-button'
-            href={`${process.env.OAUTH_URI}?client_id=${process.env.OAUTH_CLIENT_ID}&redirect_uri=${process.env.OAUTH_REDIRECT_URI}&response_type=code`}
+            href={REDIRECT_URI}
           >
             <span className='oauth-inner'>Login with iNaturalist</span>
           </a>
