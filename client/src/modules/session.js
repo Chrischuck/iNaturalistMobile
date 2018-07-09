@@ -1,3 +1,4 @@
+import { push } from 'connected-react-router'
 
 const initialState = {
   accessToken: localStorage.getItem('accessToken')
@@ -40,8 +41,11 @@ export const getAccessToken = ({ code }) => async dispatch => {
   }
   
   localStorage.setItem('accessToken', access_token)
+  dispatch(push('/explore'))
   return { type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  }
   } catch (e) {
+    dispatch(push('/login'))
+
     console.log(e)
   }
 }
