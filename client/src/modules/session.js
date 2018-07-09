@@ -21,28 +21,27 @@ export default function reducer(state = initialState, action = {}) {
 
 
 export const getAccessToken = ({ code }) => async dispatch => {
-  const { INATURALIST_URI, OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_REDIRECT_URI, OAUTH_GRANT_TYPE } = process.env
+  try {
 
-  const payload = {
-    client_id: OAUTH_CLIENT_ID,
-    client_secret: OAUTH_CLIENT_SECRET,
-    code,
-    redirect_uri: OAUTH_REDIRECT_URI,
-    grant_type: OAUTH_GRANT_TYPE
-  }
-
-  const response = await fetch(`${INATURALIST_URI}/oauth/token`, {
-    method: 'POST',
-    mode: 'cors',
-    headers: new Headers({
-      'Content-Type': 'application/json'
-    }),
-    body: JSON.stringify(payload)
-  })
-  .then(res => res)
+  const {
+    access_token,
+    token_type,
+    expires_in,
+    refresh_token,
+    scope,
+    error,
+    error_description
+  } = await fetch(`${process.env.OAUTH_TOKEN_URI}?code=${code}`)
+  .then(res => res.json())
   .catch(err => { throw err })
 
-  console.log(response)
-
-  return { type: SET_ACCESS_TOKEN, payload: { accessToken }  }
+  if (error) {
+    throw new Error('Bad code...')
+  }
+  
+  localStorage.setItem('accessToken', access_token)
+  return { type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  }
+  } catch (e) {
+    console.log(e)
+  }
 }

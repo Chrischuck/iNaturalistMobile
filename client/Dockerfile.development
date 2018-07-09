@@ -1,0 +1,12 @@
+FROM node:8.10
+
+# Set a working directory
+WORKDIR /usr/src/app
+
+COPY ./package.json .
+COPY ./yarn.lock .
+
+# Install Node.js dependencies
+RUN yarn install
+
+CMD [ "yarn", "run", "dev" ]
