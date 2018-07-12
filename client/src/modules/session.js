@@ -14,6 +14,8 @@ export default function reducer(state = initialState, action = {}) {
   switch (type) {
     case SET_ACCESS_TOKEN: 
       return { ...state, ...payload }
+    case DESTROY_ACCESS_TOKEN: 
+      return { ...state, accessToken: null }
     default: return state;
   }
 }
@@ -27,11 +29,11 @@ export const getAccessToken = ({ code }) => async dispatch => {
   const {
     access_token,
     token_type,
-    expires_in,
+    created_at,
     refresh_token,
     scope,
     error,
-    error_description
+    error_description,
   } = await fetch(`${process.env.OAUTH_TOKEN_URI}?code=${code}`)
   .then(res => res.json())
   .catch(err => { throw err })
@@ -40,6 +42,7 @@ export const getAccessToken = ({ code }) => async dispatch => {
     throw new Error('Bad code...')
   }
   
+  // expires in 24 hrs
   localStorage.setItem('accessToken', access_token)
   dispatch(push('/explore'))
   return { type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  }
@@ -48,4 +51,10 @@ export const getAccessToken = ({ code }) => async dispatch => {
 
     console.log(e)
   }
+}
+
+export const destroyAccessToken = () => async dispatch => {
+  localStorage.removeItem('accessToken')
+  dispatch(push('/login'))
+  return { type: DESTROY_ACCESS_TOKEN }
 }

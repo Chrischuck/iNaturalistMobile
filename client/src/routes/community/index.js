@@ -4,7 +4,7 @@ import Loadable from 'react-loadable'
 import Loading from '../../components/loading'
 
 const LoadableComponent = Loadable({
-  loader: () => import('./explore'),
+  loader: () => import('./community'),
   loading: Loading,
 })
 
