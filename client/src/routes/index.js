@@ -7,7 +7,8 @@ import { connect } from 'react-redux'
 import Navbar from '../components/navbar'
 import Fab from '../components/fab'
 
-import AuthRoute from '../utils/authRoute'
+import PrivateRoute from '../utils/privateRoute'
+import PublicOnlyRoute from '../utils/publicOnlyRoute'
 
 import Landing from './landing'
 import Login from './login'
@@ -27,20 +28,20 @@ const mapStateToProps = state => ({ session: state.session })
 class AppRouter extends React.Component {
   render() {
     const { accessToken } = this.props.session
-
+    console.log(accessToken)
     return (
       <ConnectedRouter history={history}>
         <>
         <Navbar accessToken={accessToken} />
         <Switch>
-          <Route exact path='/' component={Landing} />
+          <PublicOnlyRoute exact path='/' component={Landing} />
 
-          <AuthRoute privateOnly={false} publicOnly={true} path='/login' accessToken={accessToken} component={Login} />
-          <AuthRoute privateOnly={false} publicOnly={true} path='/signup' accessToken={accessToken} component={Signup} />
-          <AuthRoute privateOnly={false} publicOnly={true} path='/redirect' accessToken={accessToken} component={Redirect} />
+          <PublicOnlyRoute privateOnly={false} publicOnly={true} path='/login' accessToken={accessToken} component={Login} />
+          <PublicOnlyRoute privateOnly={false} publicOnly={true} path='/signup' accessToken={accessToken} component={Signup} />
+          <PublicOnlyRoute privateOnly={false} publicOnly={true} path='/redirect' accessToken={accessToken} component={Redirect} />
 
-          <AuthRoute privateOnly={true} path='/explore' accessToken={accessToken} component={Explore} />
-          <AuthRoute privateOnly={true} path='/community' accessToken={accessToken} component={Community} />
+          <PrivateRoute path='/explore' accessToken={accessToken} component={Explore} />
+          <PrivateRoute path='/community' accessToken={accessToken} component={Community} />
 
           <Route exact component={NotFound} />
         </Switch>

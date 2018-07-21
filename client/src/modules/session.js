@@ -34,18 +34,24 @@ export const getAccessToken = ({ code }) => async dispatch => {
     scope,
     error,
     error_description,
+    ...rest
   } = await fetch(`${process.env.OAUTH_TOKEN_URI}?code=${code}`)
   .then(res => res.json())
   .catch(err => { throw err })
-
+  console.log(access_token)
+  console.log(token_type)
+  console.log(created_at)
+  console.log(scope)
+  console.log(rest)
   if (error) {
     throw new Error('Bad code...')
   }
   
   // expires in 24 hrs
   localStorage.setItem('accessToken', access_token)
+  dispatch({ type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  })
   dispatch(push('/explore'))
-  return { type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  }
+
   } catch (e) {
     dispatch(push('/login'))
 
