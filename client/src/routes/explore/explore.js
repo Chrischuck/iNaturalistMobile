@@ -11,7 +11,8 @@ class Explore extends React.Component {
     super(props)
 
     this.state = {
-      radius: 5
+      radius: 5,
+      watcher: null
     }
   }
   componentDidMount() {
@@ -19,13 +20,22 @@ class Explore extends React.Component {
     const { radius } = this.state
     const { tokenType, accessToken } = this.props.session
 
+    const watcher = navigator.geolocation.watchPosition(console.log, console.error)
+    this.setState({ watcher })
+    
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => this.props.getObservations({ latitude, longitude, radius, accessToken, tokenType }),
-      (err) => console.log(err)
+      (err) => console.log(err),
+      {
+        enableHighAccuracy: true
+      }
     )
+
   }
 
-
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.state.watcher)
+  }
 
   render() {
     return <div>explosadfre</div>
