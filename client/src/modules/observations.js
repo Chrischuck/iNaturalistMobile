@@ -1,7 +1,7 @@
 import { push } from 'connected-react-router'
 
 const initialState = {
-  observations: []
+  nearby: []
 }
 
 // actions
@@ -33,5 +33,5 @@ export const getObservations = ({ latitude, longitude, radius, tokenType, access
   .then(res => res.json())
   .catch(console.error)
 
-  console.log(response)
+  dispatch({ type: GET_OBSERVATIONS, payload: { nearby: response.results }  })
 }
