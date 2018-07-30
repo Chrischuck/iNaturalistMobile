@@ -26,9 +26,10 @@ const mapStateToProps = state => ({ session: state.session })
 
 @connect(mapStateToProps, { destroyAccessToken })
 class AppRouter extends React.Component {
+  
   render() {
     const { accessToken } = this.props.session
-    console.log(accessToken)
+
     return (
       <ConnectedRouter history={history}>
         <>

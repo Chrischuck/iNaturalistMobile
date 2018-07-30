@@ -2,7 +2,6 @@ import { push } from 'connected-react-router'
 
 const initialState = {
   accessToken: localStorage.getItem('accessToken'),
-  tokenType: localStorage.getItem('tokenType')
 }
 
 // actions
@@ -27,28 +26,27 @@ export default function reducer(state = initialState, action = {}) {
 export const getAccessToken = ({ code }) => async dispatch => {
   try {
 
-  const {
-    access_token,
-    token_type,
-    created_at,
-    refresh_token,
-    scope,
-    error,
-    error_description,
-    ...rest
-  } = await fetch(`${process.env.OAUTH_TOKEN_URI}?code=${code}`)
-  .then(res => res.json())
-  .catch(err => { throw err })
+    const {
+      access_token,
+      token_type,
+      created_at,
+      refresh_token,
+      scope,
+      error,
+      error_description,
+      ...rest
+    } = await fetch(`${process.env.CUSTOM_API_URI}/get-token?code=${code}`)
+    .then(res => res.json())
+    .catch(err => { throw err })
 
-  if (error) {
-    throw new Error('Bad code...')
-  }
-  
-  // expires in 24 hrs
-  localStorage.setItem('accessToken', access_token)
-  localStorage.setItem('tokenType', token_type)
-  dispatch({ type: SET_ACCESS_TOKEN, payload: { accessToken: access_token, tokenType: token_type }  })
-  dispatch(push('/explore'))
+    if (error) {
+      throw new Error('Bad code...')
+    }
+    
+    // expires in 24 hrs
+    localStorage.setItem('accessToken', access_token)
+    dispatch({ type: SET_ACCESS_TOKEN, payload: { accessToken: access_token }  })
+    dispatch(push('/explore'))
 
   } catch (e) {
     dispatch(push('/login'))

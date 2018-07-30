@@ -44,20 +44,7 @@ class Explore extends React.Component {
 
   render() {
     return (<div style={{height: '100%'}}>
-      <iframe
-        width="100%"
-        height="100%"
-        frameBorder="0"
-        src= {
-          `${process.env.GOOGLE_MAPS_URI}?` +
-          `key=${process.env.GOOGLE_MAPS_KEY}&` +
-          `maptype=satellite&` +
-          `center=${this.state.latitude},${this.state.longitude}&` +
-          this.props.observations.nearby.map(createMarker).join('&')
-          
-        }
-      >
-      </iframe>
+
     </div>)
   }
 }

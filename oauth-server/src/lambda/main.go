@@ -48,6 +48,41 @@ func handler() (string, error) {
     w.Write(respBody)
 	}))
 
+
+	http.Handle("/get-me", http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
+		(w).Header().Set("Access-Control-Allow-Origin", "*")
+
+		if (r.Method != "GET") {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		}
+
+		client := &http.Client{}
+
+		accessToken := r.URL.Query().Get("accessToken")
+
+		req, err := http.NewRequest("GET", os.Getenv("INATURALIST_URI") + "/users/edit", nil)
+		if err != nil {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		}
+    req.Header.Add("Authorization","Bearer " + accessToken)
+    req.Header.Add("Accept", "application/json")
+
+		resp, err := client.Do(req)
+		if err != nil {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		}
+		defer resp.Body.Close()
+
+		respBody, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+		}
+
+		w.WriteHeader(200)
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(respBody)
+	}))
+
 	log.Println("Now server is running on port 3000")
 	http.ListenAndServe(":3000", nil)
 	return "Ok", nil
